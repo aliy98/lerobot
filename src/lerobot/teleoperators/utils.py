@@ -111,6 +111,15 @@ def make_teleoperator_from_config(config: TeleoperatorConfig) -> "Teleoperator":
         from .bi_rebot_102_leader import BiRebot102Leader
 
         return BiRebot102Leader(config)
+    elif config.type == "meta_quest":
+        from .meta_quest import MetaQuestTeleop
+        
+        return MetaQuestTeleop(config)
+    
+    elif config.type == "gello":
+        from .gello import GelloTeleop
+            
+        return GelloTeleop(config)
     else:
         try:
             return cast("Teleoperator", make_device_from_device_class(config))
