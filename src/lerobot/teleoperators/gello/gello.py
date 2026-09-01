@@ -49,7 +49,7 @@ from typing import Any
 
 import numpy as np
 
-from lerobot.types import RobotAction
+from lerobot.lerobot_types import RobotAction
 from lerobot.utils.decorators import check_if_already_connected, check_if_not_connected
 
 from ..teleoperator import Teleoperator

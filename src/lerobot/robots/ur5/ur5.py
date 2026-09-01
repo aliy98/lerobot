@@ -25,7 +25,7 @@ import rtde_receive
 import torch
 
 from lerobot.robots.robot import Robot
-from lerobot.types import RobotAction, RobotObservation
+from lerobot.lerobot_types import RobotAction, RobotObservation
 from lerobot.utils.decorators import check_if_already_connected, check_if_not_connected
 
 from .config_ur5 import UR5Config
