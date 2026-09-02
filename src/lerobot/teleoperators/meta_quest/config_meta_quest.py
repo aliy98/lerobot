@@ -9,7 +9,7 @@ from lerobot.teleoperators.config import TeleoperatorConfig
 @TeleoperatorConfig.register_subclass("meta_quest")
 @dataclass
 class MetaQuestTeleopConfig(TeleoperatorConfig):
-    udp_ip: str = "100.72.159.127"
+    udp_ip: str = "100.85.129.6"
     udp_port: int = 12345
 
     dominant_hand: str = "right"  # "right" or "left"
