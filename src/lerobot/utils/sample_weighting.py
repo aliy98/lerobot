@@ -128,6 +128,15 @@ def make_sample_weighter(
     if config.type == "uniform":
         # No-op weighter that returns uniform weights
         return UniformWeighter(device=device)
+    if config.type == "hil_intervention":
+        from lerobot.utils.hil_sample_weighting import HILInterventionWeighter
+
+        return HILInterventionWeighter(
+            device=device,
+            autonomous_weight=float(config.extra_params.get("autonomous_weight", 0.3)),
+            correction_weight=float(config.extra_params.get("correction_weight", 2.0)),
+            base_weight=float(config.extra_params.get("base_weight", 1.0)),
+        )
 
     raise ValueError(f"Unknown sample weighting type: '{config.type}'. Supported types: 'rabc', 'uniform'")
 
@@ -204,7 +213,6 @@ class UniformWeighter(SampleWeighter):
     def compute_batch_weights(self, batch: dict) -> tuple[torch.Tensor, dict]:
         """Return uniform weights (all ones)."""
         batch_size = self._determine_batch_size(batch)
-
         weights = torch.ones(batch_size, device=self.device)
         stats = {"mean_weight": 1.0, "type": "uniform"}
         return weights, stats
